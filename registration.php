@@ -1,4 +1,5 @@
 <?php
+// stabilisco la connesione con il database
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -6,18 +7,17 @@ $dbname = "edusogno_db";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Verifica della connessione
 if ($conn->connect_error) {
     die("Connessione al database fallita: " . $conn->connect_error);
 }
 
-// Ricezione dei dati dal modulo
+// Ricevo e salvo i  dati dal modulo
 $name = $_POST["name"];
 $surname = $_POST["surname"];
 $email = $_POST["email"];
-$password = password_hash($_POST["password"], PASSWORD_DEFAULT);
+$password = password_hash($_POST["password"], PASSWORD_DEFAULT); // crypto la password da salvare nel database
 
-// Controllo l'inicità della mail
+// Controllo l'unicità della mail
 $check_email = "SELECT * FROM utenti WHERE email = '$email'";
 $result = $conn->query($check_email);
 
@@ -31,7 +31,7 @@ if ($result->num_rows > 0) {
     $sql = "INSERT INTO utenti (name, surname, email, password) VALUES ('$name', '$surname', '$email', '$password')";
 
     if ($conn->query($sql) === TRUE) {
-        echo "Utente registrato con successo!";
+        header("Location: registration-confirmed.php"); // Redirect alla pagina personale dell'utente
     } else {
         echo "Errore durante la registrazione dell'utente: " . $conn->error;
     }

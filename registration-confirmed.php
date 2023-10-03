@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,25 +13,21 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <header>
         <div class="logo">
             <img src="images/logo.svg" alt="">
         </div>
     </header>
-    <h1>Hai già un account?</h1>
-    <div class="form-container">
-        <form action="login.php" method="post">
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" placeholder="name@example.com" required><br>
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" placeholder="scivila qui" required><br>
-            <input type="submit" value="Accedi" class="btn">
-        </form>
-        <div class="link-button">
-            <a href="registration_form.html">Non hai ancora un profilo? <strong>Registrati</strong>.</a>
-        </div>
-    </div>
+    <h1>La registrazione è andata a buon fine, accedi alla tua area personale</h1>
+    <h2><a href="login_form.html">Accedi</a></h2>
 </body>
+
 </html>
-<html>
+
+<style>
+h2 {
+    text-align: center;
+}
+</style>
