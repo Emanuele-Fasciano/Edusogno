@@ -69,7 +69,8 @@ $conn->close();
     </div>
     <h1>Ciao <?php echo $userName . " " . $userSurname ?>, ecco i tuoi eventi</h1>
     <h3><?php echo $success_message ?></h3>
-    <?php
+    <div class='cards-container'>
+        <?php
     if ($resultEvents->num_rows > 0) {
         // Scorro  i risultati della query e salvo il nome e la data dell' evento
         while ($row = $resultEvents->fetch_assoc()) {
@@ -81,20 +82,19 @@ $conn->close();
 
             // stampo le card con i dettagli
             echo "     
-                <div class='cards-container'>
                     <div class='card'>
                         <h2 class='title'>$nameEvent</h2>
                         <h3 class='date'>$formattedDate</h3>
                         <div class='btn'>JOIN</div>
                     </div>
-                </div>     
-                ";
-        }
-    } else {
-        // stampo un messaggio se non ci sono eventi
-        echo "<h1>Nessun evento in programma<h1/>";
-    }
-    ?>
+                    ";
+                }
+            } else {
+                // stampo un messaggio se non ci sono eventi
+                echo "<h1>Nessun evento in programma<h1/>";
+            }
+            ?>
+    </div>
 </body>
 
 </html>

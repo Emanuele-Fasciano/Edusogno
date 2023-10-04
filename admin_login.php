@@ -19,8 +19,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST["password"];
     $error = $error_message ?? null;
 
-    // Query per selezionare l'utente tramite l'email
-    $emailQuery = "SELECT id, email, password FROM utenti WHERE email = ?";
+    // Query per selezionare l' tramite l'email
+    $emailQuery = "SELECT id, email, password FROM admins WHERE email = ?";
     $stmt = $conn->prepare($emailQuery);
     $stmt->bind_param("s", $email);
     $stmt->execute();
@@ -34,11 +34,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Verifico la password
         if (password_verify($password, $storedPassword)) {
-            // Se la password è corretta, esegui l'accesso e salvo in session id e mail dello user
-            $_SESSION["user_id"] = $row["id"];
+            // Se la password è corretta, esegui l'accesso e salvo in session id e mail dell' admin
+            $_SESSION["admin_id"] = $row["id"];
             $_SESSION["email"] = $email;
 
-            header("Location: dashboard.php"); // Redirect alla pagina personale dell'utente
+            header("Location: admin_dashboard.php"); // Redirect alla pagina personale dell' admin
             exit();
         } else {
             // Se la password è errata, imposta il messaggio di errore
@@ -74,25 +74,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <img src="images/logo.svg" alt="">
         </div>
     </header>
-    <h1>Hai già un account?</h1>
+    <h1>Accesso admin</h1>
     <div class="error-message">
 
     </div>
     <div class="form-container">
-        <form action="login_form.php" method="post">
+        <form action="admin_login.php" method="post">
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" placeholder="name@example.com" required><br>
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" placeholder="Scrivila qui" required><br>
             <input type="submit" value="Accedi" class="btn">
+            <div class="link-button">
+                <a href="login_form.php">User access</a>
+            </div>
         </form>
-
-        <div class="link-button">
-            <a href="registration_form.php">Non hai ancora un profilo? <strong>Registrati</strong>.</a>
-        </div>
-        <div class="link-button">
-            <a href="admin_login.php">Admin access</a>
-        </div>
     </div>
 </body>
 

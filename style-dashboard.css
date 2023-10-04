@@ -25,8 +25,7 @@ h1 {
     margin-bottom: 2rem;
 }
 
-h3{
-    text-align: center;
+h3 {
     color: green;
     margin-top: 20px;
     margin-bottom: 20px;
@@ -38,14 +37,14 @@ h3{
 }
 
 /* actions */
-.actions{
+.actions {
     display: flex;
     margin-top: 45px;
     margin-bottom: 20px;
 }
 
 
-.action-btn a{
+.action-btn a {
     text-align: center;
     background-color: rgb(0, 87, 255);
     padding: 15px;
@@ -58,23 +57,26 @@ h3{
 }
 
 /* cards */
-.cards-container{
+.cards-container {
     display: flex;
     justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
-.card{
-    width: 25%;
+.card {
+    min-width: 30%;
     border: 2px solid rgb(19, 64, 119);
     border-radius: 20px;
     padding: 30px;
 }
 
-.title{
+.title {
     font-size: 40px;
 }
 
-.date{
+.date {
     font-size: 25px;
     font-weight: 300;
     color: rgb(204, 204, 204);
@@ -90,6 +92,35 @@ h3{
     font-size: 25px;
     margin-top: 20px;
     cursor: pointer;
+}
+
+.delete-btn{
+    text-align: center;
+    border: none;
+    background-color: red;
+    padding: 10px 30px 10px 30px;
+    color: white;
+    border-radius: 15px;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.update-btn a {
+    text-align: center;
+    border: none;
+    background-color: rgb(0, 87, 255);
+    padding: 10px 30px 10px 30px;
+    color: white;
+    border-radius: 15px;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.options{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
 }
 
 .link-button {
