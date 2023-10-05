@@ -3,7 +3,7 @@
 include "EventController.php";
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    // Recupero i dati dal modulo HTML
+    // Recupero i dati dal form HTML
     $title = $_POST["title"];
     $attendees = $_POST["attendees"];
     $description = $_POST["description"];
@@ -17,14 +17,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     header("Location: admin_dashboard.php"); // Redirect alla pagina personale dell' admin
 
 }
-
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Document</title>
+<title>Aggiungi evento</title>
 <!-- link css -->
 <link rel="stylesheet" href="form-style.css">
 
@@ -53,7 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <label for="description">Descrizione:</label>
             <input type="text" name="description" id="description" required>
             <label for="date">Data:</label>
-            <input type="date" name="date" id="date" required>
+            <input type="datetime-local" name="date" id="date" required>
 
             <input type="submit" class="btn" value="Aggiungi evento">
         </form>

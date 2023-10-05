@@ -1,4 +1,6 @@
 <?php
+
+// inizializzo la session
 session_start();
 
 // Setto una variabile null per l'errore
@@ -17,23 +19,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("Connessione al database fallita: " . $conn->connect_error);
     }
 
-    // Salvo l'email e la password inviate dal modulo e setto una variabile booleana per l'errore
+    // Salvo l'email e la password inviate dal form HTML 
     $email = $_POST["email"];
     $password = $_POST["password"];
 
-    // Query per selezionare l' tramite l'email
+    // Query per selezionare l' admin tramite l'email
     $emailQuery = "SELECT id, email, password FROM admins WHERE email = ?";
     $stmt = $conn->prepare($emailQuery);
     $stmt->bind_param("s", $email);
     $stmt->execute();
     $result = $stmt->get_result();
 
+    // controllo se l'email si trova nel database
     if ($result->num_rows == 0) {
+
         $error_message = "email o password errate, riprovare";
     } elseif ($result->num_rows == 1) {
-        $row = $result->fetch_assoc();
+        $row = $result->fetch_assoc();  // se l'email è presente la recupero dal database
 
-        $storedPassword = $row["password"];
+        $storedPassword = $row["password"];  // salvo l'email
 
         // Verifico la password
         if (password_verify($password, $storedPassword)) {
@@ -49,6 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
+    // chiudo la connsessione al database
     $conn->close();
 }
 

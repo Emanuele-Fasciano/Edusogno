@@ -67,8 +67,8 @@ $conn->close();
         <div class="action-btn"><a href="change_password_form.php">Modifica password</a></div>
         <div class="action-btn"><a href="user_login.php">Logout</a></div>
     </div>
-    <h1>Ciao <?php echo $userName . " " . $userSurname ?>, ecco i tuoi eventi</h1>
-    <h3><?php echo $success_message ?></h3>
+    <h1>Ciao <?= $userName . " " . $userSurname ?>, ecco i tuoi eventi</h1>
+    <h3 class="success-message"><?= $success_message ?></h3>
     <div class='cards-container'>
         <?php
         if ($resultEvents->num_rows > 0) {

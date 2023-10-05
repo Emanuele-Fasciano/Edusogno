@@ -1,5 +1,6 @@
 <?php
 
+// creo una classe Event
 class Event
 {
     public $title;

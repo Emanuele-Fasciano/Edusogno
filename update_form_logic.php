@@ -15,9 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $eventController = new EventController();
 
     // Richiamo la funzione addEvent per aggiungere il record al database
-    if ($eventController->updateEvent($title, $attendees, $description, $date, $id)) {
-        header("Location: admin_dashboard.php"); // Redirect alla pagina personale dell' admin
-    } else {
-        echo "Errore durante l'aggiunta del record nel database.";
-    }
+    $eventController->updateEvent($title, $attendees, $description, $date, $id);
+    header("Location: admin_dashboard.php"); // Redirect alla pagina personale dell' admin
+
 }

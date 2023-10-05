@@ -42,7 +42,7 @@ $idEvent = $_GET['idEvent'];
             <input type="text" name="description" id="description" required></input>
 
             <label for="date">Data:</label>
-            <input type="date" name="date" id="date" required>
+            <input type="datetime-local" name="date" id="date" required>
 
             <input type="submit" class="btn" value="Modifica">
         </form>

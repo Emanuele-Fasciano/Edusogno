@@ -28,14 +28,15 @@ $adminName = $row["name"];
 $adminSurname = $row["surname"];
 
 
-// Eseguo la query per recuperare le righe in cui l'email è contenuta nella colonna 'attendees'
+// Eseguo la query per recuperare tutti gli eventi dal database
 $sql = "SELECT * FROM eventi";
-
-
 $resultAllEvents = $conn->query($sql);
 
+// chiudo la connessione con il databse
 $conn->close();
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -61,13 +62,18 @@ $conn->close();
             <img src="images/logo.svg" alt="">
         </div>
     </header>
+
     <div class="actions">
         <div class="action-btn"><a href="user_login.php">Logout</a></div>
         <div class="action-btn" class="btn btn-primary"><a href="add_event_form.php">Aggiungi evento</a></div>
     </div>
-    <h1>Benvenuto admin <?php echo $adminName . " " . $adminSurname ?>, ecco la lista di tutti gli eventi</h1>
+
+    <h1>Benvenuto admin <?= $adminName . " " . $adminSurname ?>, ecco la lista di tutti gli eventi</h1>
+
     <div class='cards-container'>
         <?php
+
+        // se nel database c'è almeno un evento
         if ($resultAllEvents->num_rows > 0) {
             // Scorro  i risultati della query e salvo i dettagli dell' evento
             while ($row = $resultAllEvents->fetch_assoc()) {
@@ -96,8 +102,7 @@ $conn->close();
             }
         } else {
             // stampo un messaggio se non ci sono eventi
-            echo "<h1>Nessun evento in programma
-        <h1 />";
+            echo "<h1>Nessun evento in programma<h1 />";
         }
         ?>
     </div>
