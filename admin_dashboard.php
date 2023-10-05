@@ -44,7 +44,7 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <!-- link css -->
-    <link rel="stylesheet" href="admin_dashboard_style.css">
+    <link rel="stylesheet" href="dashboard-style.css">
 
     <!-- link font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -52,9 +52,7 @@ $conn->close();
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap" rel="stylesheet">
 
     <!-- link fontawesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
@@ -71,11 +69,12 @@ $conn->close();
     <div class='cards-container'>
         <?php
         if ($resultAllEvents->num_rows > 0) {
-            // Scorro  i risultati della query e salvo il nome e la data dell' evento
+            // Scorro  i risultati della query e salvo i dettagli dell' evento
             while ($row = $resultAllEvents->fetch_assoc()) {
                 $nameEvent = $row["nome_evento"];
                 $dateEvent = $row["data_evento"];
                 $idEvent = $row["id"];
+                $attendees = $row["attendees"];
 
                 // Formatto la data e l'orario
                 $formattedDate = date("d/m/Y H:i", strtotime($dateEvent));
@@ -92,7 +91,7 @@ $conn->close();
                             </form>
                             <div  class='update-btn'><a href='update_form.php?idEvent=$idEvent'><i class='fa-solid fa-pen'></i></a></div>
                         </div>
-    </div>
+                    </div>  
     ";
             }
         } else {

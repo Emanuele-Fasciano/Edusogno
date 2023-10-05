@@ -2,6 +2,7 @@
 
 $idEvent = $_GET['idEvent'];
 
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,7 +12,7 @@ $idEvent = $_GET['idEvent'];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <!-- link css -->
-    <link rel="stylesheet" href="registration-style.css">
+    <link rel="stylesheet" href="form-style.css">
 
     <!-- link font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,7 +26,7 @@ $idEvent = $_GET['idEvent'];
             <img src="images/logo.svg" alt="">
         </div>
     </header>
-    <div class="action-btn"><a href="admin_dashboard.php">Indietro</a></div>
+    <div class="back-btn"><a href="admin_dashboard.php">Indietro</a></div>
     <h1>Modifica evento</h1>
     <div class="form-container">
         <form action="update_form_logic.php" method="POST">
@@ -43,7 +44,7 @@ $idEvent = $_GET['idEvent'];
             <label for="date">Data:</label>
             <input type="date" name="date" id="date" required>
 
-            <input type="submit" class="btn" value="Aggiorna Record">
+            <input type="submit" class="btn" value="Modifica">
         </form>
     </div>
 

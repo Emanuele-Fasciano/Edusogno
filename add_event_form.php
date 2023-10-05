@@ -13,11 +13,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $eventController = new EventController();
 
     // Richiamo la funzione addEvent per aggiungere il record al database
-    if ($eventController->addEvent($title, $attendees, $description, $date)) {
-        header("Location: admin_dashboard.php"); // Redirect alla pagina personale dell' admin
-    } else {
-        echo "Errore durante l'aggiunta del record nel database.";
-    }
+    $eventController->addEvent($title, $attendees, $description, $date);
+    header("Location: admin_dashboard.php"); // Redirect alla pagina personale dell' admin
+
 }
 
 ?>
@@ -28,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Document</title>
 <!-- link css -->
-<link rel="stylesheet" href="registration-style.css">
+<link rel="stylesheet" href="form-style.css">
 
 <!-- link font -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -42,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <img src="images/logo.svg" alt="">
         </div>
     </header>
-    <div class="btn"><a class="btn" href="admin_dashboard.php">Indietro</a></div>
+    <div class="back-btn"><a class="btn" href="admin_dashboard.php">Indietro</a></div>
     <h1>Aggiungi evento</h1>
     <div class="form-container">
         <form action="add_event_form.php" method="POST">
@@ -57,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <label for="date">Data:</label>
             <input type="date" name="date" id="date" required>
 
-            <input type="submit" class="btn" value="Aggiungi Record">
+            <input type="submit" class="btn" value="Aggiungi evento">
         </form>
     </div>
 

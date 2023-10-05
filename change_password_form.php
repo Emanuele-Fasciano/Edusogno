@@ -56,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <!-- link css -->
-    <link rel="stylesheet" href="login-style.css">
+    <link rel="stylesheet" href="form-style.css">
 
     <!-- link font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
