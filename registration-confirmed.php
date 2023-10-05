@@ -21,7 +21,7 @@
         </div>
     </header>
     <h1>La registrazione è andata a buon fine, accedi alla tua area personale</h1>
-    <h2><a href="login_form.html">Accedi</a></h2>
+    <h2><a href="user_login.php">Accedi</a></h2>
 </body>
 
 </html>

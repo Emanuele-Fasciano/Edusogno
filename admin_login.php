@@ -86,7 +86,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="password" id="password" name="password" placeholder="Scrivila qui" required><br>
             <input type="submit" value="Accedi" class="btn">
             <div class="link-button">
-                <a href="login_form.php">User access</a>
+                <a href="user_login.php">User access</a>
             </div>
         </form>
     </div>

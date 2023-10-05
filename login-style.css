@@ -25,6 +25,13 @@ h1 {
     margin-bottom: 2rem;
 }
 
+h4{
+    text-align: center;
+    color: red;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
 .logo img {
     height: 60px;
     margin-left: 5rem;

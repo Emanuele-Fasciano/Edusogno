@@ -94,7 +94,7 @@ h3 {
     cursor: pointer;
 }
 
-.delete-btn{
+.delete-btn {
     text-align: center;
     border: none;
     background-color: red;
@@ -116,7 +116,7 @@ h3 {
     cursor: pointer;
 }
 
-.options{
+.options {
     display: flex;
     align-items: center;
     justify-content: center;

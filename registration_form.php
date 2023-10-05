@@ -34,7 +34,7 @@
             <input type="submit" value="REGISTRATI" class="btn">
         </form>
         <div class="link-button">
-            <a href="login_form.php">Hai già un account? <strong>Accedi</strong>.</a>
+            <a href="user_login.php">Hai già un account? <strong>Accedi</strong>.</a>
         </div>
     </div>
 </body>

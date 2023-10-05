@@ -49,7 +49,7 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <!-- link css -->
-    <link rel="stylesheet" href="dashboard-style.css">
+    <link rel="stylesheet" href="style-dashboard.css">
 
     <!-- link font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -65,35 +65,35 @@ $conn->close();
     </header>
     <div class="actions">
         <div class="action-btn"><a href="change_password_form.php">Modifica password</a></div>
-        <div class="action-btn"><a href="login_form.php">Logout</a></div>
+        <div class="action-btn"><a href="user_login.php">Logout</a></div>
     </div>
     <h1>Ciao <?php echo $userName . " " . $userSurname ?>, ecco i tuoi eventi</h1>
     <h3><?php echo $success_message ?></h3>
     <div class='cards-container'>
         <?php
-    if ($resultEvents->num_rows > 0) {
-        // Scorro  i risultati della query e salvo il nome e la data dell' evento
-        while ($row = $resultEvents->fetch_assoc()) {
-            $nameEvent = $row["nome_evento"];
-            $dateEvent = $row["data_evento"];
+        if ($resultEvents->num_rows > 0) {
+            // Scorro  i risultati della query e salvo il nome e la data dell' evento
+            while ($row = $resultEvents->fetch_assoc()) {
+                $nameEvent = $row["nome_evento"];
+                $dateEvent = $row["data_evento"];
 
-            // Formatto la data e l'orario
-            $formattedDate = date("d/m/Y H:i", strtotime($dateEvent));
+                // Formatto la data e l'orario
+                $formattedDate = date("d/m/Y H:i", strtotime($dateEvent));
 
-            // stampo le card con i dettagli
-            echo "     
+                // stampo le card con i dettagli
+                echo "     
                     <div class='card'>
                         <h2 class='title'>$nameEvent</h2>
                         <h3 class='date'>$formattedDate</h3>
                         <div class='btn'>JOIN</div>
                     </div>
                     ";
-                }
-            } else {
-                // stampo un messaggio se non ci sono eventi
-                echo "<h1>Nessun evento in programma<h1/>";
             }
-            ?>
+        } else {
+            // stampo un messaggio se non ci sono eventi
+            echo "<h1>Nessun evento in programma<h1/>";
+        }
+        ?>
     </div>
 </body>
 

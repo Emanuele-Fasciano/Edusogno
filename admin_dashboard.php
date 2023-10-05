@@ -44,7 +44,7 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <!-- link css -->
-    <link rel="stylesheet" href="style-dashboard.css">
+    <link rel="stylesheet" href="admin_dashboard_style.css">
 
     <!-- link font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -52,7 +52,9 @@ $conn->close();
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap" rel="stylesheet">
 
     <!-- link fontawesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
@@ -62,7 +64,7 @@ $conn->close();
         </div>
     </header>
     <div class="actions">
-        <div class="action-btn"><a href="login_form.php">Logout</a></div>
+        <div class="action-btn"><a href="user_login.php">Logout</a></div>
         <div class="action-btn" class="btn btn-primary"><a href="add_event_form.php">Aggiungi evento</a></div>
     </div>
     <h1>Benvenuto admin <?php echo $adminName . " " . $adminSurname ?>, ecco la lista di tutti gli eventi</h1>
