@@ -2,7 +2,7 @@
 session_start();
 
 // Setto una variabile null per l'errore
-$error_message =  null;
+$error_message = null;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // stabilisco la connesione con il database
@@ -28,9 +28,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->execute();
     $result = $stmt->get_result();
 
-
-    // Controllo se l'email è presente nel database
-    if ($result->num_rows == 1) {
+    if ($result->num_rows == 0) {
+        $error_message = "email o password errate, riprovare";
+    } elseif ($result->num_rows == 1) {
         $row = $result->fetch_assoc();
         $storedPassword = $row["password"];
 
@@ -45,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } else {
 
             // Se la password è errata, imposta il messaggio di errore
-            $error_message = "Mail o password non corretti, riprovare";
+            $error_message = "email o password errate, riprovare";
         }
     }
 
@@ -79,9 +79,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </header>
     <h1>Hai già un account?</h1>
     <div class="error-message">
-        <?php
-        echo '<h4>' . $error_message . '</h4>';
-        ?>
+        <h4><?= $error_message ?></h4>
     </div>
     <div class="form-container">
         <form action="user_login.php" method="post">

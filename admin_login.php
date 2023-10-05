@@ -1,6 +1,9 @@
 <?php
 session_start();
 
+// Setto una variabile null per l'errore
+$error_message = null;
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // stabilisco la connesione con il database
     $servername = "localhost";
@@ -17,7 +20,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Salvo l'email e la password inviate dal modulo e setto una variabile booleana per l'errore
     $email = $_POST["email"];
     $password = $_POST["password"];
-    $error = $error_message ?? null;
 
     // Query per selezionare l' tramite l'email
     $emailQuery = "SELECT id, email, password FROM admins WHERE email = ?";
@@ -26,8 +28,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->execute();
     $result = $stmt->get_result();
 
-    // Controllo se l'email è presente nel database
-    if ($result->num_rows == 1) {
+    if ($result->num_rows == 0) {
+        $error_message = "email o password errate, riprovare";
+    } elseif ($result->num_rows == 1) {
         $row = $result->fetch_assoc();
 
         $storedPassword = $row["password"];
@@ -42,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             exit();
         } else {
             // Se la password è errata, imposta il messaggio di errore
-            $error_message = "mail o password non corretti, riprovare";
+            $error_message = "email o password errate, riprovare";
         }
     }
 
@@ -76,7 +79,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </header>
     <h1>Accesso admin</h1>
     <div class="error-message">
-
+        <h4><?= $error_message ?></h4>
     </div>
     <div class="form-container">
         <form action="admin_login.php" method="post">
