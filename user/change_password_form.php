@@ -57,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <!-- link css -->
-    <link rel="stylesheet" href="form-style.css">
+    <link rel="stylesheet" href="../css/form-style.css">
 
     <!-- link font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -68,7 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
     <header>
         <div class="logo">
-            <img src="images/logo.svg" alt="">
+            <img src="../images/logo.svg" alt="">
         </div>
     </header>
     <div class="action-btn"><a href="dashboard.php">Indietro</a></div>
@@ -77,9 +77,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="form-container">
         <form action="change_password_form.php" method="post">
             <label for="password">Nuova Password:</label>
-            <input type="password" id="password" name="new_password" placeholder="Inserisci la nuova password" required><br>
+            <input type="password" id="password" name="new_password" placeholder="Inserisci la nuova password"
+                required><br>
             <label for="password_confirm">Conferma Nuova Password:</label>
-            <input type="password" id="password_confirm" name="password_confirm" placeholder="Inserisci la nuova password" required><br>
+            <input type="password" id="password_confirm" name="password_confirm"
+                placeholder="Inserisci la nuova password" required><br>
             <input type="submit" value="Cambia Password" class="btn">
         </form>
     </div>
@@ -88,24 +90,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </html>
 
 <style>
-    h2 {
-        color: green;
-        text-align: center;
-    }
+h2 {
+    color: green;
+    text-align: center;
+}
 
-    .action-btn {
-        margin-top: 45px;
-    }
+.action-btn {
+    margin-top: 45px;
+}
 
-    .action-btn a {
-        text-align: center;
-        background-color: rgb(0, 87, 255);
-        padding: 15px;
-        color: white;
-        border-radius: 15px;
-        font-size: 15px;
-        cursor: pointer;
-        text-decoration: none;
-        margin-left: 20px;
-    }
+.action-btn a {
+    text-align: center;
+    background-color: rgb(0, 87, 255);
+    padding: 15px;
+    color: white;
+    border-radius: 15px;
+    font-size: 15px;
+    cursor: pointer;
+    text-decoration: none;
+    margin-left: 20px;
+}
 </style>

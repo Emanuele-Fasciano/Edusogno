@@ -68,7 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <!-- link css -->
-    <link rel="stylesheet" href="login-style.css">
+    <link rel="stylesheet" href="../css/login-style.css">
 
     <!-- link font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -79,7 +79,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
     <header>
         <div class="logo">
-            <img src="images/logo.svg" alt="">
+            <img src="../images/logo.svg" alt="">
         </div>
     </header>
     <h1>Accesso admin</h1>
@@ -94,7 +94,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="password" id="password" name="password" placeholder="Scrivila qui" required><br>
             <input type="submit" value="Accedi" class="btn">
             <div class="link-button">
-                <a href="user_login.php">User access</a>
+                <a href="../user/user_login.php">User access</a>
             </div>
         </form>
     </div>

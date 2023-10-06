@@ -1,7 +1,7 @@
 <?php
 
 // Includo la classe EventController
-include "EventController.php";
+include "../event/EventController.php";
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // Recupero i dati dal modulo HTML

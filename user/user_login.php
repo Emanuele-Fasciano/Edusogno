@@ -68,13 +68,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap" rel="stylesheet">
 
     <!-- link css -->
-    <link rel="stylesheet" href="login-style.css">
+    <link rel="stylesheet" href="../css/form-style.css">
 </head>
 
 <body>
     <header>
         <div class="logo">
-            <img src="images/logo.svg" alt="">
+            <img src="../images/logo.svg" alt="">
         </div>
     </header>
     <h1>Hai già un account?</h1>
@@ -94,7 +94,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <a href="registration_form.php">Non hai ancora un profilo? <strong>Registrati</strong>.</a>
         </div>
         <div class="link-button">
-            <a href="admin_login.php">Admin access</a>
+            <a href="../admin/admin_login.php">Admin access</a>
         </div>
     </div>
 </body>

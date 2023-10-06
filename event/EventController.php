@@ -1,7 +1,7 @@
 <?php
 
 
-require 'vendor/autoload.php';
+require '../vendor/autoload.php';
 
 class EventController
 {
@@ -37,6 +37,13 @@ class EventController
             // Rimuovo gli spazi bianchi iniziali e finali
             $attendeesArray = array_map('trim', $attendeesArray);
 
+            // formatto la data e l'orario per stamparle nella mail
+            list($onlyDate, $onlyTime) = explode(' ', $date);
+            $dataDateTime = new DateTime($onlyDate);
+            $timeDateTime = new DateTime($onlyTime);
+            $formattedDate = $dataDateTime->format("d/m/Y");
+            $formattedTime = $timeDateTime->format("H:i");
+
             // Verifico se ogni elemento dell'array è un indirizzo email valido
             $validEmails = [];
             foreach ($attendeesArray as $email) {
@@ -55,11 +62,33 @@ class EventController
                 $phpmailer->Port = 2525;
                 $phpmailer->Username = '3188c60cf7bfb6';
                 $phpmailer->Password = '10b534efe4d64d';
-
                 $phpmailer->setFrom('manu@gmail.com');
                 $phpmailer->addAddress($email);
                 $phpmailer->Subject = "Nuovo invito per te";
-                $phpmailer->Body = "Ciao, sei stato invitato a $title il $date, ecco una breve descrizione dell'evento: $description";
+                $phpmailer->isHTML(true);
+                $phpmailer->Body = "
+                                        <html>
+                                        <head>
+                                            <style>
+                                                body {
+                                                    font-family: Arial, sans-serif;
+                                                    margin-top: 20px;
+                                                    margin-left: 20px;
+                                                }
+
+                                                .description {
+                                                    margin-top: 15px;
+                                                    margin-bottom: 15px;
+                                                }
+                                            </style>
+                                        </head>
+                                        <body>
+                                            <p>Ciao $email,</p>
+                                            <p class='description'>Sei stato invitato a $title il $formattedDate alle $formattedTime</p>
+                                            <p class='description'>Ecco una breve descrizione dell' evento:<br>$description</p>
+                                        </body>
+                                        </html>
+                                    ";
 
                 if ($phpmailer->send()) {
                     echo "Email inviata con successo a $email<br>";
@@ -96,6 +125,13 @@ class EventController
             // Rimuov gli spazi bianchi iniziali e finali
             $attendeesArray = array_map('trim', $attendeesArray);
 
+            // formatto la data e l'orario per stamparle nella mail
+            list($onlyDate, $onlyTime) = explode(' ', $date);
+            $dataDateTime = new DateTime($onlyDate);
+            $timeDateTime = new DateTime($onlyTime);
+            $formattedDate = $dataDateTime->format("d/m/Y");
+            $formattedTime = $timeDateTime->format("H:i");
+
             // Verifica se ogni elemento dell'array è un indirizzo email valido
             $validEmails = [];
             foreach ($attendeesArray as $email) {
@@ -114,11 +150,35 @@ class EventController
                 $phpmailer->Port = 2525;
                 $phpmailer->Username = '3188c60cf7bfb6';
                 $phpmailer->Password = '10b534efe4d64d';
-
                 $phpmailer->setFrom('manu@gmail.com');
                 $phpmailer->addAddress($email);
-                $phpmailer->Subject = "Nuovo invito per te";
-                $phpmailer->Body = "Ciao, sei stato invitato a $title il $date, ecco una breve descrizione dell'evento: $description";
+                $phpmailer->Subject = "Modifica invito";
+                $phpmailer->isHTML(true);
+                $phpmailer->Body = "
+                                        <html>
+                                        <head>
+                                            <style>
+                                                body {
+                                                    font-family: Arial, sans-serif;
+                                                    margin-top: 20px;
+                                                    margin-left: 20px;
+                                                }
+
+                                                .description {
+                                                    margin-top: 15px;
+                                                    margin-bottom: 15px;
+                                                }
+                                            </style>
+                                        </head>
+                                        <body>
+                                            <p>Ciao $email,</p>
+                                            <p>Ci sono state delle modifiche all' evento dove sei stato invitato. Controlla i nuovi dettagli:</p>
+                                            <p class='description'>Nome evento: $title <br>
+                                             Data evento: il $formattedDate alle $formattedTime</p>
+                                            <p class='description'>Descrizione aggiornata dell' evento:<br>$description</p>
+                                        </body>
+                                        </html>
+                                    ";
 
                 if ($phpmailer->send()) {
                     echo "Email inviata con successo a $email<br>";
@@ -127,7 +187,7 @@ class EventController
                 }
             }
         } else {
-            // die("Errore durante l'aggiunta dell'evento: " . $stmt->error);
+            die("Errore durante l'aggiunta dell'evento: " . $stmt->error);
         }
 
         $stmt->close();

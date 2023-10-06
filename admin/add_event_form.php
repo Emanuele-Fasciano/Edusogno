@@ -1,6 +1,6 @@
 <?php
 // Includo la classe EventController
-include "EventController.php";
+include "../event/EventController.php";
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // Recupero i dati dal form HTML
@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Aggiungi evento</title>
 <!-- link css -->
-<link rel="stylesheet" href="form-style.css">
+<link rel="stylesheet" href="../css/form-style.css">
 
 <!-- link font -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <body>
     <header>
         <div class="logo">
-            <img src="images/logo.svg" alt="">
+            <img src="../images/logo.svg" alt="">
         </div>
     </header>
     <div class="back-btn"><a class="btn" href="admin_dashboard.php">Indietro</a></div>

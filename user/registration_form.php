@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <!-- link css -->
-    <link rel="stylesheet" href="form-style.css">
+    <link rel="stylesheet" href="../css/form-style.css">
 
     <!-- link font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,7 +17,7 @@
 <body>
     <header>
         <div class="logo">
-            <img src="images/logo.svg" alt="">
+            <img src="../images/logo.svg" alt="">
         </div>
     </header>
     <h1>Crea il tuo account</h1>
