@@ -25,6 +25,10 @@ h1 {
     margin-bottom: 2rem;
 }
 
+h4{
+    color: green;
+}
+
 .success-message {
     text-align: center;
     color: green;

@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 // stabilisco la connesione con il database
 $servername = "localhost";
 $username = "root";
@@ -21,15 +23,19 @@ $password = password_hash($_POST["password"], PASSWORD_DEFAULT); // crypto la pa
 $check_email = "SELECT * FROM utenti WHERE email = '$email'";
 $result = $conn->query($check_email);
 
-
-// Inserimento dei dati nella tabella degli utenti
-$sql = "INSERT INTO utenti (name, surname, email, password) VALUES ('$name', '$surname', '$email', '$password')";
-
-if ($conn->query($sql) === TRUE) {
-    header("Location: registration-confirmed.php"); // Redirect alla pagina personale dell'utente
+if ($result->num_rows > 0) {
+    $_SESSION['error_message'] = "La tua email è già stata utilizzata";
+    header("Location: registration_form.php");
 } else {
-    echo "Errore durante la registrazione dell'utente: " . $conn->error;
-}
+    // Inserimento dei dati nella tabella degli utenti
+    $sql = "INSERT INTO utenti (name, surname, email, password) VALUES ('$name', '$surname', '$email', '$password')";
 
-// Chiudi la connessione al database
-$conn->close();
+    if ($conn->query($sql) === TRUE) {
+        header("Location: registration-confirmed.php"); // Redirect alla pagina personale dell'utente
+    } else {
+        echo "Errore durante la registrazione dell'utente: " . $conn->error;
+    }
+
+    // Chiudi la connessione al database
+    $conn->close();
+}

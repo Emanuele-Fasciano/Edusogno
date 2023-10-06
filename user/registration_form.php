@@ -1,3 +1,11 @@
+<?php
+session_start();
+
+$error_message = null ?? $_SESSION['error_message'];
+unset($_SESSION['error_message']);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,6 +29,9 @@
         </div>
     </header>
     <h1>Crea il tuo account</h1>
+    <div class="error-message">
+        <h4><?= $error_message ?></h4>
+    </div>
     <div class="form-container">
         <form action="registration.php" method="post">
             <label for="name">Inserisci il nome</label><br>

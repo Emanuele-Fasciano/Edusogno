@@ -1,6 +1,26 @@
 <?php
 
+// stabilisco la connesione con il database
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "edusogno_db";
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+if ($conn->connect_error) {
+    die("Connessione al database fallita: " . $conn->connect_error);
+}
+
 $idEvent = $_GET['idEvent'];
+
+$sql = "SELECT attendees, nome_evento, data_evento, description  FROM eventi WHERE id = $idEvent";
+$result = $conn->query($sql);
+$row = $result->fetch_assoc();
+$attendees = $row["attendees"];
+$title = $row["nome_evento"];
+$date = $row["data_evento"];
+$description = $row["description"];
+
 
 
 ?>
@@ -33,16 +53,16 @@ $idEvent = $_GET['idEvent'];
             <input type="hidden" name="idEvent" value="<?php echo $idEvent ?>">
 
             <label for="title">Titolo:</label>
-            <input type="text" name="title" id="title" required>
+            <input type="text" name="title" id="title" value="<?= $title ?>" required>
 
             <label for="attendees">Partecipanti:</label>
-            <input type="text" name="attendees" id="attendees" required>
+            <input type="text" name="attendees" id="attendees" value="<?= $attendees ?>" required>
 
             <label for="description">Descrizione:</label>
-            <input type="text" name="description" id="description" required></input>
+            <input type="text" name="description" id="description" value="<?= $description ?>" required></input>
 
             <label for="date">Data:</label>
-            <input type="datetime-local" name="date" id="date" required>
+            <input type="datetime-local" name="date" id="date" value="<?= $date ?>" required>
 
             <input type="submit" class="btn" value="Modifica">
         </form>

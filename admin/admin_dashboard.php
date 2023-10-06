@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 // stabilisco la connesione con il database
 $servername = "localhost";
@@ -13,7 +14,10 @@ if ($conn->connect_error) {
     die("Connessione al database fallita: " . $conn->connect_error);
 }
 
-session_start();
+// variabili flash per il feedback di aggiunta o modifica evento
+$success_message = $_SESSION['add_event_message'] ?? $_SESSION['update_event_message'] ?? null;
+unset($_SESSION['add_event_message']);
+unset($_SESSION['update_event_message']);
 
 // recupero email e id dell admin autenticato
 if (isset($_SESSION["admin_id"])) {
@@ -53,9 +57,7 @@ $conn->close();
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap" rel="stylesheet">
 
     <!-- link fontawesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
@@ -71,24 +73,24 @@ $conn->close();
     </div>
 
     <h1>Benvenuto admin <?= $adminName . " " . $adminSurname ?>, ecco la lista di tutti gli eventi</h1>
+    <h3 class="success-message"><?= $success_message ?></h4>
+        <div class='cards-container'>
+            <?php
 
-    <div class='cards-container'>
-        <?php
+            // se nel database c'è almeno un evento
+            if ($resultAllEvents->num_rows > 0) {
+                // Scorro  i risultati della query e salvo i dettagli dell' evento
+                while ($row = $resultAllEvents->fetch_assoc()) {
+                    $nameEvent = $row["nome_evento"];
+                    $dateEvent = $row["data_evento"];
+                    $idEvent = $row["id"];
+                    $attendees = $row["attendees"];
 
-        // se nel database c'è almeno un evento
-        if ($resultAllEvents->num_rows > 0) {
-            // Scorro  i risultati della query e salvo i dettagli dell' evento
-            while ($row = $resultAllEvents->fetch_assoc()) {
-                $nameEvent = $row["nome_evento"];
-                $dateEvent = $row["data_evento"];
-                $idEvent = $row["id"];
-                $attendees = $row["attendees"];
+                    // Formatto la data e l'orario
+                    $formattedDate = date("d/m/Y H:i", strtotime($dateEvent));
 
-                // Formatto la data e l'orario
-                $formattedDate = date("d/m/Y H:i", strtotime($dateEvent));
-
-                // stampo le card con i dettagli
-                echo "     
+                    // stampo le card con i dettagli
+                    echo "     
                     <div class='card'>
                         <h2 class='title'>$nameEvent</h2>
                         <h3 class='date'>$formattedDate</h3>
@@ -101,13 +103,13 @@ $conn->close();
                         </div>
                     </div>  
     ";
+                }
+            } else {
+                // stampo un messaggio se non ci sono eventi
+                echo "<h1>Nessun evento in programma<h1 />";
             }
-        } else {
-            // stampo un messaggio se non ci sono eventi
-            echo "<h1>Nessun evento in programma<h1 />";
-        }
-        ?>
-    </div>
+            ?>
+        </div>
 </body>
 
 </html>

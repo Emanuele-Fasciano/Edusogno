@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 // Includo la classe EventController
 include "../event/EventController.php";
 
@@ -16,6 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     // Richiamo la funzione addEvent per aggiungere il record al database
     $eventController->updateEvent($title, $attendees, $description, $date, $id);
+    $_SESSION['update_event_message'] = "Evento modificato con successo!";
     header("Location: admin_dashboard.php"); // Redirect alla pagina personale dell' admin
 
 }
