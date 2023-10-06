@@ -1,8 +1,12 @@
 <?php
 session_start();
 
-$error_message = null ?? $_SESSION['error_message'];
-unset($_SESSION['error_message']);
+// se l'email è gia stata utilizzata stampo un messaggio in pagina
+$error_message = null;
+if (isset($_SESSION['email_error'])) {
+    $error_message = $_SESSION['email_error'];
+    unset($_SESSION['email_error']);
+}
 
 ?>
 

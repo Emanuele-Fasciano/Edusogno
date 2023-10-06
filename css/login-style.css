@@ -60,6 +60,19 @@ h4{
     font-size: 25px;
 }
 
+.password-container {
+    position: relative;
+}
+
+.fa-eye {
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: rgb(0, 87, 255);
+    font-size: 24px;
+    cursor: pointer;
+}
+
 .btn {
     border: none;
     background-color: rgb(0, 87, 255);

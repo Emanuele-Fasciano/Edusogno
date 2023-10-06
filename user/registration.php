@@ -24,8 +24,8 @@ $check_email = "SELECT * FROM utenti WHERE email = '$email'";
 $result = $conn->query($check_email);
 
 if ($result->num_rows > 0) {
-    $_SESSION['error_message'] = "La tua email è già stata utilizzata";
     header("Location: registration_form.php");
+    $_SESSION['email_error'] = "La tua email è già stata utilizzata, inserisci una nuova email";
 } else {
     // Inserimento dei dati nella tabella degli utenti
     $sql = "INSERT INTO utenti (name, surname, email, password) VALUES ('$name', '$surname', '$email', '$password')";

@@ -67,13 +67,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <!-- link css -->
-    <link rel="stylesheet" href="../css/login-style.css">
+
+    <!-- link fontawesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- link font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+
+    <!-- link css -->
+    <link rel="stylesheet" href="../css/login-style.css">
+
 </head>
 
 <body>
@@ -91,7 +98,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" placeholder="name@example.com" required><br>
             <label for="password">Password:</label>
-            <input type="password" id="password" name="password" placeholder="Scrivila qui" required><br>
+            <div class="password-container">
+                <input type="password" id="password" name="password" placeholder="Scrivila qui" required><br>
+                <i class="fa-solid fa-eye" id="show-password"></i>
+            </div>
             <input type="submit" value="Accedi" class="btn">
             <div class="link-button">
                 <a href="../user/user_login.php">User access</a>
@@ -99,6 +109,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </form>
     </div>
 </body>
+
+<script>
+const passwordInput = document.getElementById('password');
+const showPasswordBtn = document.getElementById('show-password');
+
+showPasswordBtn.addEventListener("click", function() {
+    if (passwordInput.type === "text") {
+        passwordInput.type = "password";
+    } else {
+        passwordInput.type = "text";
+    }
+});
+</script>
 
 </html>
 <html>
